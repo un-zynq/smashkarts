@@ -49,7 +49,34 @@
 			CONTENT_ENCODING_MULTIPLE: 3.0
 		}
 	</script> -->
-	
+	<script>
+(() => {
+    const hide = () => {
+        document.querySelectorAll(`
+            iframe,
+            [id*="ad"],
+            [class*="ad"],
+            [class*="banner"],
+            [id*="banner"],
+            [class*="popup"],
+            [id*="popup"],
+            [class*="sponsor"],
+            [id*="sponsor"]
+        `).forEach(el => {
+            el.style.display = "none";
+            el.style.visibility = "hidden";
+            el.style.opacity = "0";
+            el.style.pointerEvents = "none";
+        });
+    };
+
+    hide();
+    new MutationObserver(hide).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
+})();
+</script>
 	<!-- Youtube Game Schema -->
 	<script type="application/ld+json">
 		{
